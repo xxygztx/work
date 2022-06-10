@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.power.function.mapper.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.power.function.domain.Goods" >
+    <id column="goods_id" property="goodsId" jdbcType="VARCHAR" />
+    <result column="coms_id" property="comsId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="goods_tags" property="goodsTags" jdbcType="VARCHAR" />
+    <result column="goods_createTime" property="goodsCreatetime" jdbcType="VARCHAR" />
+    <result column="goods_num" property="goodsNum" jdbcType="INTEGER" />
+    <result column="goods_picture" property="goodsPicture" jdbcType="VARCHAR" />
+    <result column="goods_desc" property="goodsDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    goods_id, coms_id, user_id, goods_tags, goods_createTime, goods_num,
+    goods_picture, goods_desc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where goods_id = #{goodsId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from goods
+    where goods_id = #{goodsId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.power.function.domain.Goods" >
+    insert into goods (goods_id, coms_id, user_id, 
+      goods_tags, goods_createTime,
+      goods_num, goods_picture, goods_desc
+      )
+    values (#{goodsId,jdbcType=VARCHAR}, #{comsId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{goodsTags,jdbcType=VARCHAR}, #{goodsCreatetime,jdbcType=VARCHAR},
+      #{goodsNum,jdbcType=INTEGER}, #{goodsPicture,jdbcType=VARCHAR}, #{goodsDesc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.power.function.domain.Goods" >
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="comsId != null" >
+        coms_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="goodsTags != null" >
+        goods_tags,
+      </if>
+      <if test="goodsCreatetime != null" >
+        goods_createTime,
+      </if>
+      <if test="goodsNum != null" >
+        goods_num,
+      </if>
+      <if test="goodsPicture != null" >
+        goods_picture,
+      </if>
+      <if test="goodsDesc != null" >
+        goods_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="comsId != null" >
+        #{comsId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTags != null" >
+        #{goodsTags,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCreatetime != null" >
+        #{goodsCreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNum != null" >
+        #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPicture != null" >
+        #{goodsPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDesc != null" >
+        #{goodsDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.power.function.domain.Goods" >
+    update goods
+    <set >
+      <if test="comsId != null" >
+        coms_id = #{comsId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTags != null" >
+        goods_tags = #{goodsTags,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsCreatetime != null" >
+        goods_createTime = #{goodsCreatetime,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsNum != null" >
+        goods_num = #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="goodsPicture != null" >
+        goods_picture = #{goodsPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsDesc != null" >
+        goods_desc = #{goodsDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where goods_id = #{goodsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.power.function.domain.Goods" >
+    update goods
+    set coms_id = #{comsId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      goods_tags = #{goodsTags,jdbcType=VARCHAR},
+      goods_createTime = #{goodsCreatetime,jdbcType=VARCHAR},
+      goods_num = #{goodsNum,jdbcType=INTEGER},
+      goods_picture = #{goodsPicture,jdbcType=VARCHAR},
+      goods_desc = #{goodsDesc,jdbcType=VARCHAR}
+    where goods_id = #{goodsId,jdbcType=VARCHAR}
+  </update>
+</mapper>

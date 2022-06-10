@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.power.setting.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.power.setting.domain.User">
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_head" jdbcType="VARCHAR" property="userAvatar" />
+    <result column="createTime" jdbcType="VARCHAR" property="createtime" />
+    <result column="loginTime" jdbcType="VARCHAR" property="logintime" />
+    <result column="nameAuth" jdbcType="BIT" property="nameauth" />
+    <result column="user_age" jdbcType="INTEGER" property="userAge" />
+    <result column="user_num" jdbcType="INTEGER" property="userNum" />
+    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
+    <result column="user_tele" jdbcType="CHAR" property="userTele" />
+    <result column="use_desc" jdbcType="VARCHAR" property="useDesc" />
+    <result column="user_sex" jdbcType="VARCHAR" property="userSex" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id,user_name,user_head,createTime,loginTime,nameAuth,user_age,user_num,user_password,
+    user_tele,use_desc,user_sex
+  </sql>
+
+  <insert id="insert" parameterType="Map">
+    insert into user (user_id, user_name, user_head,
+      createTime, loginTime, nameAuth, 
+      user_age, user_num, user_password, 
+      user_tele, use_desc, user_sex
+      )
+    values (#{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userAvatar,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=VARCHAR}, #{logintime,jdbcType=VARCHAR}, #{nameauth,jdbcType=BIT}, 
+      #{userAge,jdbcType=INTEGER}, #{userNum,jdbcType=INTEGER}, #{userPassword,jdbcType=VARCHAR}, 
+      #{userTele,jdbcType=CHAR}, #{useDesc,jdbcType=VARCHAR}, #{userSex,jdbcType=VARCHAR}
+      )
+  </insert>
+
+  <select id="selectUser" parameterType="Map" resultMap="BaseResultMap">
+    select *
+<!--    <include refid="Base_Column_List"></include>-->
+        from user
+        where user_tele=#{phone} and user_password=#{password}
+  </select>
+  <update id="updateLoginTime" parameterType="com.power.setting.domain.User">
+    update user
+    <trim prefix="set" suffixOverrides=",">
+      <if test="userId != null">
+        user_id=#{userId},
+      </if>
+      <if test="userName != null">
+        user_name#{userName},
+      </if>
+      <if test="userAvatar != null">
+        user_avatar=#{userAvatar},
+      </if>
+      <if test="createtime != null">
+        createTime=#{createtime},
+      </if>
+      <if test="logintime != null">
+        loginTime=#{logintime},
+      </if>
+      <if test="nameauth != null">
+        nameAuth=#{nameauth},
+      </if>
+      <if test="userAge != null">
+        user_age=#{userAge},
+      </if>
+      <if test="userNum != null">
+        user_num=#{userNum},
+      </if>
+      <if test="userPassword != null">
+        user_password=#{userPassword},
+      </if>
+      <if test="userTele != null">
+        user_tele=#{userTele},
+      </if>
+      <if test="useDesc != null">
+        use_desc=#{useDesc},
+      </if>
+      <if test="userSex != null">
+        user_sex=#{userSex},
+      </if>
+    </trim>
+    <where>
+      <if test="userTele!=null">
+        and user_tele=#{userTele}
+      </if>
+    <if test="userPassword!=null">
+      and user_password=#{userPassword}
+    </if>
+    </where>
+
+  </update>
+
+  <insert id="insertSelective" parameterType="com.power.setting.domain.User">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userAvatar != null">
+        user_avatar,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="logintime != null">
+        loginTime,
+      </if>
+      <if test="nameauth != null">
+        nameAuth,
+      </if>
+      <if test="userAge != null">
+        user_age,
+      </if>
+      <if test="userNum != null">
+        user_num,
+      </if>
+      <if test="userPassword != null">
+        user_password,
+      </if>
+      <if test="userTele != null">
+        user_tele,
+      </if>
+      <if test="useDesc != null">
+        use_desc,
+      </if>
+      <if test="userSex != null">
+        user_sex,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userAvatar != null">
+        #{userAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=VARCHAR},
+      </if>
+      <if test="logintime != null">
+        #{logintime,jdbcType=VARCHAR},
+      </if>
+      <if test="nameauth != null">
+        #{nameauth,jdbcType=BIT},
+      </if>
+      <if test="userAge != null">
+        #{userAge,jdbcType=INTEGER},
+      </if>
+      <if test="userNum != null">
+        #{userNum,jdbcType=INTEGER},
+      </if>
+      <if test="userPassword != null">
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userTele != null">
+        #{userTele,jdbcType=CHAR},
+      </if>
+      <if test="useDesc != null">
+        #{useDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null">
+        #{userSex,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  </mapper>
