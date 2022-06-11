@@ -6,6 +6,9 @@ import com.power.function.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class GoodsServiceImpl implements GoodsService {
 
@@ -14,5 +17,15 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public int insert(Goods goods) {
        return goodsMapper.insert(goods);
+    }
+
+    @Override
+    public List<Goods> selectAll() {
+        return goodsMapper.selectAll();
+    }
+
+    @Override
+    public List<Map> selectGetTopProduct() {
+        return goodsMapper.selectGetTopProduct();
     }
 }

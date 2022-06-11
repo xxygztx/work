@@ -39,6 +39,16 @@
         from user
         where user_tele=#{phone} and user_password=#{password}
   </select>
+  <select id="selectCare"  resultType="com.power.setting.domain.GetCare">
+        select user_id,user_name,user_head from
+        user
+        <where>
+           user_id in
+          <foreach collection="list" item="id" open="(" close=")" separator=",">
+            #{id}
+          </foreach>
+        </where>
+  </select>
   <update id="updateLoginTime" parameterType="com.power.setting.domain.User">
     update user
     <trim prefix="set" suffixOverrides=",">

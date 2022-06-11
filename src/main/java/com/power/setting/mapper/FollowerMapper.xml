@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.power.setting.mapper.UserMapper">
+    <resultMap id="BaseMap" type="com.power.setting.mapper.UserMapper">
+        <result column="user_id" property="userId"></result>
+        <result column="follower_id" property="followerId"></result>
+    </resultMap>
+<!--    如果输出部分字段的话可以用一个map集合-->
+    <resultMap id="ResultMap" type="java.util.HashMap">
+        <result column="follower_id" property="followerId"></result>
+    </resultMap>
+    <select id="selectFollower" resultMap="ResultMap">
+            select b.follower_id from user a inner join
+            user_follwer b on a.user_id = b.user_id
+</select>
+    <insert id="insertCare" parameterType="Map">
+        insert into user_follwer (user_id,follower_id)
+        values (#{uid},#{target})
+    </insert>
+</mapper>
