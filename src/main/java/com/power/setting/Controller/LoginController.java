@@ -143,31 +143,37 @@ public class LoginController {
             user1.setUserTele(phone);
             user1.setUserPassword(password);
             user1.setLogintime(TransfromDate.toDateString(new Date()));
+            int result =0;
             try {
-                int result = userService.updateLoginTime(user1);
-                //修改成功
-                if (result > 0) {
-                    //将数据封装到map集合中
-                    Map map1 =new HashMap();
-                    map1.put("phone",phone);
-                    map1.put("password",password);
-                    //从数据库中查询其他的数据
-                    User user = userService.selectUser(map1);
-                    //将userId放到session中
-                    session.setAttribute("userId",user.getUserId());
-                    map.put("data",user);
-                    map.put("info", Contains.EXECUTE_SUCCESS);
-                    map.put("status", 200);
-
-                } else {
-                    map.put("info", Contains.EXECUTE_FINAL);
-                    map.put("status", 403);
-                    map.put("data", Contains.EXECUTE_MASSAGE);
-                }
+                 result = userService.updateLoginTime(user1);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            //修改成功
+            if (result > 0) {
+                //将数据封装到map集合中
+                Map map1 =new HashMap();
+                map1.put("phone",phone);
+                map1.put("password",password);
+                //从数据库中查询其他的数据
+                User user = userService.selectUser(map1);
+                //将userId放到session中
+                session.setAttribute("userId",user.getUserId());
+                map.put("data",user);
+                map.put("info", Contains.EXECUTE_SUCCESS);
+                map.put("status", 200);
+
+            } else {
+                map.put("info", Contains.EXECUTE_FINAL);
+                map.put("status", 403);
+                map.put("data", Contains.EXECUTE_MASSAGE);
+            }
+        }else {
+            map.put("info", Contains.EXECUTE_FINAL);
+            map.put("status", 403);
+            map.put("data", Contains.EXECUTE_MASSAGE);
         }
+
         return map;
     }
 }

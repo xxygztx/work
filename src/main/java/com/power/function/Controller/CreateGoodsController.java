@@ -54,21 +54,23 @@ public class CreateGoodsController {
         //定义一个集合给返回数据
         Map json =new HashMap();
         //将作品传到数据库中
+        int i=0;
         try{
-            int i = goodsService.insert(goods);
-            if(i>0){
-                json.put("status",200);
-                json.put("createAt",goods.getGoodsCreatetime());
-                json.put("id",id);
-                json.put("preview",description);
-                json.put("tag",result);
-                json.put("info", Contains.EXECUTE_SUCCESS);
-            }else{
-                json.put("status",403);
-                json.put("info",Contains.EXECUTE_FINAL);
-            }
+             i = goodsService.insert(goods);
+
         }catch(Exception e){
            e.printStackTrace();
+        }
+        if(i>0){
+            json.put("status",200);
+            json.put("createAt",goods.getGoodsCreatetime());
+            json.put("id",id);
+            json.put("preview",description);
+            json.put("tag",result);
+            json.put("info", Contains.EXECUTE_SUCCESS);
+        }else{
+            json.put("status",403);
+            json.put("info",Contains.EXECUTE_FINAL);
         }
         return json;
     }

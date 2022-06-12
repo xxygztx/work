@@ -64,7 +64,7 @@ public class FollwerController {
             int i = userService.insertCare(map);
             if(i>0){
                 returnObject.setStatus(200);
-                returnObject.setData("null");
+                returnObject.setData("关注成功");
                 returnObject.setInfo(Contains.EXECUTE_SUCCESS);
             }else{
                 returnObject.setStatus(403);
