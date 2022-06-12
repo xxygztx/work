@@ -50,22 +50,23 @@ public class LoginController {
         String connect =(String)map.get("userTele")+","+map.get("userPassword");
         //将userId保存到session中
         session.setAttribute("userId",map.get("userId"));
+        int sucess =0;
         try {
-            int sucess = userService.insert(map);
-            //新建用户成功
-            if (sucess > 0) {
-                map.put("info", Contains.EXECUTE_SUCCESS);
-                map.put("status", 200);
-                //生成token
-                String token = TwtUtil.createToken(connect);
-                //将token封装到map中
-                map.put("token", token);
-            } else {
-                map.clear();
-                map.put("info", Contains.EXECUTE_FINAL);
-            }
+             sucess = userService.insert(map);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        //新建用户成功
+        if (sucess > 0) {
+            map.put("info", Contains.EXECUTE_SUCCESS);
+            map.put("status", 200);
+            //生成token
+            String token = TwtUtil.createToken(connect);
+            //将token封装到map中
+            map.put("token", token);
+        } else {
+            map.clear();
+            map.put("info", Contains.EXECUTE_FINAL);
         }
         return map;
     }
