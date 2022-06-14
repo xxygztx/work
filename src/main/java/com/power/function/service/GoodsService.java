@@ -8,5 +8,5 @@ import java.util.Map;
 public interface GoodsService {
     int insert(Goods record);
     List<Goods> selectAll();
-    List<Map> selectGetTopProduct();
+    List<Map> selectGetTopProduct(Map map);
 }

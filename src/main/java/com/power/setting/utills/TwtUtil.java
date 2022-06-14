@@ -16,7 +16,7 @@ import com.power.setting.Contains.Contains;
 public class TwtUtil {
     //过期时间
         /**
-         * 生成签名，15分钟过期
+         * 生成签名，3天过期
          *
          * @param **username**
          * @param **password**
@@ -26,7 +26,7 @@ public class TwtUtil {
             try {
                 // 设置过期时间
                 Date date = new Date(System.currentTimeMillis() + Contains.EXPIRE_TIME);
-                // 私钥和加密算法
+                // 私钥和加密算法z`
                 Algorithm algorithm = Algorithm.HMAC256(Contains.TOKEN_SECRET);
                 // 设置头部信息
                 Map<String, Object> header = new HashMap<>(2);

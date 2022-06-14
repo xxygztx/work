@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.power.setting.domain.User">
     <result column="user_id" jdbcType="VARCHAR" property="userId" />
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="user_head" jdbcType="VARCHAR" property="userAvatar" />
+    <result column="user_avatar" jdbcType="VARCHAR" property="userAvatar" />
     <result column="createTime" jdbcType="VARCHAR" property="createtime" />
     <result column="loginTime" jdbcType="VARCHAR" property="logintime" />
     <result column="nameAuth" jdbcType="BIT" property="nameauth" />
@@ -16,12 +16,12 @@
     <result column="user_sex" jdbcType="VARCHAR" property="userSex" />
   </resultMap>
   <sql id="Base_Column_List">
-    user_id,user_name,user_head,createTime,loginTime,nameAuth,user_age,user_num,user_password,
+    user_id,user_name,user_avatar,createTime,loginTime,nameAuth,user_age,user_num,user_password,
     user_tele,use_desc,user_sex
   </sql>
 
   <insert id="insert" parameterType="Map">
-    insert into user (user_id, user_name, user_head,
+    insert into user (user_id, user_name, user_avatar,
       createTime, loginTime, nameAuth, 
       user_age, user_num, user_password, 
       user_tele, use_desc, user_sex
@@ -40,7 +40,7 @@
         where user_tele=#{phone} and user_password=#{password}
   </select>
   <select id="selectCare"  resultType="com.power.setting.domain.GetCare">
-        select user_id,user_name,user_head from
+        select user_id,user_name,user_avatar from
         user
         <where>
            user_id in
@@ -48,6 +48,10 @@
             #{id}
           </foreach>
         </where>
+  </select>
+  <select id="selectPhone" resultMap="BaseResultMap">
+    select * from user
+    where user_tele =#{phone}
   </select>
   <update id="updateLoginTime" parameterType="com.power.setting.domain.User">
     update user

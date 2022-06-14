@@ -44,4 +44,9 @@ public class UserServiceImpl  implements UserService {
     public int insertCare(Map map) {
         return userMapper.insertCare(map);
     }
+
+    @Override
+    public List<User> selectPhone(String Phone) {
+      return   userMapper.selectPhone(Phone);
+    }
 }

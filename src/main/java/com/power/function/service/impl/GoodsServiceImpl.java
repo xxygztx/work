@@ -25,7 +25,7 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public List<Map> selectGetTopProduct() {
-        return goodsMapper.selectGetTopProduct();
+    public List<Map> selectGetTopProduct(Map map) {
+        return goodsMapper.selectGetTopProduct(map);
     }
 }

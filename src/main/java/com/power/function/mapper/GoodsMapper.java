@@ -27,7 +27,7 @@ public interface GoodsMapper {
      * 查询首页推荐的产品
      * @return
      */
-    List<Map> selectGetTopProduct();
+    List<Map> selectGetTopProduct(Map map);
     int insertSelective(Goods record);
 
     Goods selectByPrimaryKey(String goodsId);

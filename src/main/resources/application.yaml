@@ -4,5 +4,7 @@ spring:
     password: a3240124918
     username: root
     driver-class-name: com.mysql.cj.jdbc.Driver
+  mvc:
+    static-path-pattern: /static/**
 mybatis:
   mapper-locations: classpath:**/mapper/*.xml

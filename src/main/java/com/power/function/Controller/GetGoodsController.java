@@ -8,6 +8,7 @@ import com.power.setting.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
@@ -47,10 +48,16 @@ public class GetGoodsController {
      */
     @ResponseBody
     @GetMapping("/getTopProduct")
-    public Object getTopProduct(){
+    public Object getTopProduct(@RequestParam("offset") Integer offest,
+                                @RequestParam("limit") Integer limit){
+        //创建衣蛾集合接受请求参数
+        int startPages = (offest-1)*limit;
+        Map map1 = new HashMap();
+        map1.put("start",startPages);
+        map1.put("limit",limit);
         //新建一个集合用来存储数据
         Map map = new HashMap();
-        List<Map> maps = goodsService.selectGetTopProduct();
+        List<Map> maps = goodsService.selectGetTopProduct(map1);
         if(!maps.isEmpty()|| maps==null){
             map.put("status",200);
             map.put("product",maps);

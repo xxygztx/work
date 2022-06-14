@@ -13,4 +13,5 @@ public interface UserService {
     List<Map<String, String>> selectFollower();
     List<GetCare> selectCare(List<Map<String, String>> follower);
     int insertCare(Map map);
+    List<User> selectPhone(String Phone);
 }

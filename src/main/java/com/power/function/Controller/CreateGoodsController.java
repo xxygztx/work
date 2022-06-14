@@ -37,8 +37,6 @@ public class CreateGoodsController {
         String description = (String) map.get("description");
         String imgs = (String) map.get("imgs");
         //定义一个存储图片地址拼接的字符串变量
-
-
         //查询user的id.
         String userId= (String) session.getAttribute("userId");
         //将得到的作品数据放到Goods对象中
@@ -57,21 +55,23 @@ public class CreateGoodsController {
         int i=0;
         try{
              i = goodsService.insert(goods);
-
+            if(i>0){
+                json.put("status",200);
+                json.put("createAt",goods.getGoodsCreatetime());
+                json.put("id",id);
+                json.put("preview",description);
+                json.put("tag",result);
+                json.put("info", Contains.EXECUTE_SUCCESS);
+            }else{
+                json.put("status",403);
+                json.put("info",Contains.EXECUTE_FINAL);
+            }
         }catch(Exception e){
+            json.put("status","403");
+            json.put("info","该商品id已经存在");
            e.printStackTrace();
         }
-        if(i>0){
-            json.put("status",200);
-            json.put("createAt",goods.getGoodsCreatetime());
-            json.put("id",id);
-            json.put("preview",description);
-            json.put("tag",result);
-            json.put("info", Contains.EXECUTE_SUCCESS);
-        }else{
-            json.put("status",403);
-            json.put("info",Contains.EXECUTE_FINAL);
-        }
+
         return json;
     }
 }

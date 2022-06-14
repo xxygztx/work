@@ -30,7 +30,7 @@
   <select id="selectGetTopProduct" resultMap="GetTopProduct">
         select goods_id, user_id, goods_tags , goods_createTime,
                 goods_desc from goods order by goods_createTime desc
-              limit 0,7
+              limit #{start},#{limit}
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
