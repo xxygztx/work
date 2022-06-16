@@ -27,8 +27,8 @@ public class GetGoodsController {
      */
     @ResponseBody
     @GetMapping("getMyProduct")
-    public Object getMyProduct(){
-        List<Goods> goods = goodsService.selectAll();
+    public Object getMyProduct(@RequestParam("userId") String userId){
+        List<Goods> goods = goodsService.selectAll(userId);
         //建立一个集合储存返回结果
         Map map = new HashMap();
         if(goods!=null&&goods.size()>0){
@@ -36,8 +36,8 @@ public class GetGoodsController {
             map.put("data",goods);
             map.put("info", Contains.EXECUTE_SUCCESS);
         }else{
-            map.put("status",403);
-            map.put("info",Contains.EXECUTE_FINAL);
+            map.put("data",goods);
+            map.put("info","没有上传作品");
         }
         return map;
     }

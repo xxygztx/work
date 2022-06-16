@@ -25,7 +25,7 @@
   <select id="selectAll" resultMap="BaseResultMap" >
     select goods_id, coms_id, user_id, goods_tags , goods_createTime, goods_num,
            goods_picture, goods_desc
-        from goods
+        from goods where user_id = #{user_id}
   </select>
   <select id="selectGetTopProduct" resultMap="GetTopProduct">
         select goods_id, user_id, goods_tags , goods_createTime,

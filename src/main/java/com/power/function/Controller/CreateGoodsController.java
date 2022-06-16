@@ -4,6 +4,9 @@ import com.power.function.domain.Goods;
 import com.power.function.service.GoodsService;
 import com.power.setting.Contains.Contains;
 import com.power.setting.utills.RandomNumber;
+import com.power.setting.utills.TransfromDate;
+import com.power.setting.utills.TwtUtil;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +32,7 @@ public class CreateGoodsController {
     @PostMapping("/uploadProduct")
     public Object uploadProduct(@RequestParam Map map, HttpSession session){
         //将接受到的数据从map集合中拿出来
+        String userId=(String) map.get("userId");
         String id= (String) map.get("id");
         String tags = (String) map.get("tag");
         String name = (String) map.get("name");
@@ -38,7 +43,7 @@ public class CreateGoodsController {
         String imgs = (String) map.get("imgs");
         //定义一个存储图片地址拼接的字符串变量
         //查询user的id.
-        String userId= (String) session.getAttribute("userId");
+//        String userId= (String) session.getAttribute("userId");
         //将得到的作品数据放到Goods对象中
         Goods goods =new Goods();
         goods.setGoodsId(id);
@@ -46,7 +51,7 @@ public class CreateGoodsController {
         goods.setGoodsDesc(description);
         goods.setGoodsPicture(imgs);
         goods.setGoodsNum(0);
-        goods.setGoodsCreatetime(RandomNumber.getNum());
+        goods.setGoodsCreatetime(TransfromDate.toDateString(new Date()));
         goods.setComsId(RandomNumber.getNum());
         goods.setUserId(userId);
         //定义一个集合给返回数据

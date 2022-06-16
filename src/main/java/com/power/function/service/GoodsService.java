@@ -7,6 +7,6 @@ import java.util.Map;
 
 public interface GoodsService {
     int insert(Goods record);
-    List<Goods> selectAll();
+    List<Goods> selectAll(String userId);
     List<Map> selectGetTopProduct(Map map);
 }

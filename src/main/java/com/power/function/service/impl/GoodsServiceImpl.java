@@ -20,8 +20,8 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public List<Goods> selectAll() {
-        return goodsMapper.selectAll();
+    public List<Goods> selectAll(String userId) {
+        return goodsMapper.selectAll(userId);
     }
 
     @Override

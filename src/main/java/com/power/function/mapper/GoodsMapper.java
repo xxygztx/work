@@ -21,7 +21,7 @@ public interface GoodsMapper {
      * 查询所有作品
      * @return
      */
-    List<Goods> selectAll();
+    List<Goods> selectAll(String userId);
 
     /**
      * 查询首页推荐的产品
