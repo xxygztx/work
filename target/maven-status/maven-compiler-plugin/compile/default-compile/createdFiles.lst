@@ -17,6 +17,7 @@ com\power\setting\domain\User.class
 com\power\setting\Service\impl\UserServiceImpl.class
 com\power\setting\utills\ReturnObject.class
 com\power\setting\Controller\FollwerController.class
+com\power\websocket\WebSocketConfig.class
 com\power\setting\domain\Follower.class
 com\power\setting\domain\GetCare.class
 com\power\setting\Controller\ToLogin.class
