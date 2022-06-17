@@ -28,6 +28,14 @@ public interface GoodsMapper {
      * @return
      */
     List<Map> selectGetTopProduct(Map map);
+
+    /**
+     * 给评论区添加商品和评论区id
+     * @param map
+     * @return
+     */
+    int insertComsId(Map map);
+    List<Goods> selectGoods(String s);
     int insertSelective(Goods record);
 
     Goods selectByPrimaryKey(String goodsId);

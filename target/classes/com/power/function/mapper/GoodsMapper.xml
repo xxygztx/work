@@ -52,6 +52,10 @@
       #{goodsNum,jdbcType=INTEGER}, #{goodsPicture,jdbcType=VARCHAR}, #{goodsDesc,jdbcType=VARCHAR}
       )
   </insert>
+  <insert id="insertComsId" parameterType="Map">
+    insert into comments(coms_id,goods_id)
+    values(#{comsId},#{goodsId})
+  </insert>
   <insert id="insertSelective" parameterType="com.power.function.domain.Goods" >
     insert into goods
     <trim prefix="(" suffix=")" suffixOverrides="," >

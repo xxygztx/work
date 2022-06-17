@@ -1,7 +1,7 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/dftest?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone  GMT
-    password: a3240124918
+    url: jdbc:mysql://localhost:3306/model?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone  GMT
+    password: 1020915
     username: root
     driver-class-name: com.mysql.cj.jdbc.Driver
   mvc:

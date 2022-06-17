@@ -28,4 +28,9 @@ public class GoodsServiceImpl implements GoodsService {
     public List<Map> selectGetTopProduct(Map map) {
         return goodsMapper.selectGetTopProduct(map);
     }
+
+    @Override
+    public int insertComsId(Map map) {
+        return goodsMapper.insertComsId(map);
+    }
 }

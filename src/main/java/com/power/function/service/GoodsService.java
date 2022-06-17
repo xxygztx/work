@@ -9,4 +9,5 @@ public interface GoodsService {
     int insert(Goods record);
     List<Goods> selectAll(String userId);
     List<Map> selectGetTopProduct(Map map);
+    int insertComsId(Map map);
 }
