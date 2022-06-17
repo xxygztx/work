@@ -76,7 +76,8 @@ public class CreateGoodsController {
                 json.put("status",200);
                 json.put("createAt",goods.getGoodsCreatetime());
                 json.put("id",userId);
-                json.put("preview",description);
+                json.put("preview",imgs[0]);
+                json.put("description",description);
                 json.put("tag",result);
                 json.put("info", Contains.EXECUTE_SUCCESS);
             }else{
@@ -85,7 +86,7 @@ public class CreateGoodsController {
             }
         }catch(Exception e){
             json.put("status","403");
-            json.put("info","该商品id已经存在");
+            json.put("info","上传失败");
            e.printStackTrace();
         }
 

@@ -70,5 +70,21 @@ public class GetGoodsController {
         }
         return map;
     }
+    @ResponseBody
+    @GetMapping("getProduct")
+    public Object getProduct(String goods){
+        Map map = new HashMap();
+        if(goods==""|| goods==null){
+            map.put("status",200);
+            map.put("info",Contains.EXECUTE_SUCCESS);
+            map.put("data",goods);
+            return map;
+        }
+        List<Goods> goods1 = goodsService.selectGoods(goods);
+        map.put("status",200);
+        map.put("data",goods1);
+        map.put("info",Contains.EXECUTE_SUCCESS);
+        return map;
+    }
 
 }
