@@ -33,4 +33,9 @@ public class GoodsServiceImpl implements GoodsService {
     public int insertComsId(Map map) {
         return goodsMapper.insertComsId(map);
     }
+
+    @Override
+    public List<Goods> selectGoods(String s) {
+        return goodsMapper.selectGoods(s);
+    }
 }

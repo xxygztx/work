@@ -31,7 +31,7 @@ public class CreateGoodsController {
     @ResponseBody
     @PostMapping("/uploadProduct")
     public Object uploadProduct(@RequestParam Map map,
-                                @RequestParam("imgs[]") String[] imgs,HttpSession session){
+                                @RequestParam("imgs") String[] imgs,HttpSession session){
         //将接受到的数据从map集合中拿出来
         String userId= (String) map.get("userId");
         String tags = (String) map.get("tag");

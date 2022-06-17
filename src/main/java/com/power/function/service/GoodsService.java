@@ -10,4 +10,5 @@ public interface GoodsService {
     List<Goods> selectAll(String userId);
     List<Map> selectGetTopProduct(Map map);
     int insertComsId(Map map);
+    List<Goods> selectGoods(String s);
 }
