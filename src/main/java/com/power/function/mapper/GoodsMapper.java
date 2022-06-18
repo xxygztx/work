@@ -36,6 +36,7 @@ public interface GoodsMapper {
      */
     int insertComsId(Map map);
     List<Goods> selectGoods(String s);
+    int selectCount();
     int insertSelective(Goods record);
 
     Goods selectByPrimaryKey(String goodsId);

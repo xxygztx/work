@@ -11,4 +11,5 @@ public interface GoodsService {
     List<Map> selectGetTopProduct(Map map);
     int insertComsId(Map map);
     List<Goods> selectGoods(String s);
+    int selectCount();
 }

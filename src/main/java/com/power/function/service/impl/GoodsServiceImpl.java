@@ -38,4 +38,9 @@ public class GoodsServiceImpl implements GoodsService {
     public List<Goods> selectGoods(String s) {
         return goodsMapper.selectGoods(s);
     }
+
+    @Override
+    public int selectCount() {
+        return goodsMapper.selectCount();
+    }
 }

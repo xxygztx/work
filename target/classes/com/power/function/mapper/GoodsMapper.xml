@@ -15,8 +15,8 @@
     <id column="goods_id" property="goodsId" jdbcType="VARCHAR" />
     <result column="user_id" property="userId" jdbcType="VARCHAR" />
     <result column="goods_tags" property="goodsTags" jdbcType="VARCHAR" />
-    <result column="goods_createTime" property="goodsCreatetime" jdbcType="VARCHAR" />
-    <result column="goods_desc" property="goodsDesc" jdbcType="VARCHAR" />
+    <result column="goods_picture" property="goodsPicture" jdbcType="VARCHAR" />
+    <result column="user_name" property="userNmae" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
     goods_id, coms_id, user_id, goods_tags, goods_createTime, goods_num,
@@ -27,9 +27,12 @@
            goods_picture, goods_desc
         from goods where user_id = #{user_id}
   </select>
+  <select id="selectCount" resultType="int">
+    select count(*) from goods
+  </select>
   <select id="selectGetTopProduct" resultMap="GetTopProduct">
-        select goods_id, user_id, goods_tags , goods_createTime,
-                goods_desc from goods order by goods_createTime desc
+        select s.goods_id, s.user_id, s.goods_tags ,s.goods_picture,n.user_name
+                 from goods s join  user n on n.user_id = s.user_id  order by s.goods_createTime desc
               limit #{start},#{limit}
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >

@@ -53,12 +53,29 @@ public class GetGoodsController {
         //创建衣蛾集合接受请求参数
         int startPages = (offest-1)*limit;
         Map map1 = new HashMap();
+        int i = goodsService.selectCount();
+
+
         map1.put("start",startPages);
         map1.put("limit",limit);
         //新建一个集合用来存储数据
         Map map = new HashMap();
         List<Map> maps = goodsService.selectGetTopProduct(map1);
-        if(!maps.isEmpty()|| maps==null){
+
+        if(!maps.isEmpty()){
+            String judge ="";
+            if(i>=startPages+limit){
+                judge = "true";
+            }
+            else{
+                judge="false";
+            }
+            map.put("judge",judge);
+            for(Map s:maps){
+                String  goodsPictuer = (String) s.get("goodsPicture");
+                String[] picture  = goodsPictuer.split(",");
+                s.put("goodsPicture",picture[0]);
+            }
             map.put("status",200);
             map.put("product",maps);
             map.put("info",Contains.EXECUTE_SUCCESS);
