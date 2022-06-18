@@ -97,7 +97,7 @@ public class GetGoodsController {
             map.put("data",goods);
             return map;
         }
-        List<Goods> goods1 = goodsService.selectGoods(goods);
+        List<Map> goods1 = goodsService.selectGoods(goods);
         map.put("status",200);
         map.put("data",goods1);
         map.put("info",Contains.EXECUTE_SUCCESS);

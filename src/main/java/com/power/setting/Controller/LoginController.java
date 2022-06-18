@@ -8,10 +8,7 @@ import com.power.setting.utills.TransfromDate;
 import com.power.setting.utills.TwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -24,6 +21,21 @@ import java.util.Map;
 public class LoginController {
     @Autowired
     UserService userService;
+
+    @ResponseBody
+    @GetMapping("getPhone")
+    public Object getPhone(String phone){
+        List<User> user= userService.selectPhone(phone);
+        Map map =new HashMap();
+        if(user==null || user.size()==0){
+            map.put("status",200);
+            map.put("info","未注册");
+        }else{
+            map.put("status",200);
+            map.put("info","已经注册");
+        }
+        return map;
+    }
 
     /**
      * 注册
@@ -48,12 +60,6 @@ public class LoginController {
         map.put("useDesc", param.get("decration"));
         map.put("userSex", param.get("sex"));
         Map map1 =new HashMap();
-        //还要判断账号和密码是否已经存在，如果存在就失败，没有就继续运行。
-           List<User> user= userService.selectPhone((String) param.get("phone"));
-           if(user!=null && user.size()>0){
-               map1.put("info","账号已存在");
-               return map1;
-           }else {
                //将userId和password连接到一起
                String connect = (String) map.get("userTele") + "," + map.get("userPassword");
                //将userId保存到session中
@@ -80,7 +86,7 @@ public class LoginController {
                 map1.put("status","403");
                    e.printStackTrace();
                }
-           }
+
         return map1;
     }
 

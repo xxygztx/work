@@ -35,7 +35,7 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public List<Goods> selectGoods(String s) {
+    public List<Map> selectGoods(String s) {
         return goodsMapper.selectGoods(s);
     }
 

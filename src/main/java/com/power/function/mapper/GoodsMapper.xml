@@ -18,6 +18,17 @@
     <result column="goods_picture" property="goodsPicture" jdbcType="VARCHAR" />
     <result column="user_name" property="userNmae" jdbcType="VARCHAR" />
   </resultMap>
+  <resultMap id="Base" type="Map" >
+    <id column="goods_id" property="goodsId" jdbcType="VARCHAR" />
+    <result column="coms_id" property="comsId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="goods_tags" property="goodsTags" jdbcType="VARCHAR" />
+    <result column="goods_createTime" property="goodsCreatetime" jdbcType="VARCHAR" />
+    <result column="goods_num" property="goodsNum" jdbcType="INTEGER" />
+    <result column="goods_picture" property="goodsPicture" jdbcType="VARCHAR" />
+    <result column="goods_desc" property="goodsDesc" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" />
+  </resultMap>
   <sql id="Base_Column_List" >
     goods_id, coms_id, user_id, goods_tags, goods_createTime, goods_num,
     goods_picture, goods_desc
@@ -41,14 +52,15 @@
     from goods
     where goods_id = #{goodsId,jdbcType=VARCHAR}
   </select>
-  <select id="selectGoods" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectGoods" parameterType="java.lang.String" resultMap="Base">
     select
-    <include refid="Base_Column_List"></include>
-    from goods
+    s.goods_id, s.coms_id, s.user_id, s.goods_tags , s.goods_createTime, s.goods_num,
+    s.goods_picture, s.goods_desc,m.user_name
+    from goods s join user m on s.user_id = m.user_id
     <where>
         <if test="goods!=null and goods!=''">
-          goods_desc like concat('%',#{goods},'%')
-            or goods_tags like concat('%',#{goods},'%')
+          s.goods_desc like concat('%',#{goods},'%')
+            or s.goods_tags like concat('%',#{goods},'%')
         </if>
     </where>
   </select>
